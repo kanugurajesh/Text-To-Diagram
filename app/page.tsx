@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import mermaid from "mermaid";
 
 export default function Home() {
-  const [mermaidData, setMermaidData] = useState(`graph TD
-    A[Christmas] -->|Get money| B(Go shopping)
-    B --> C{Let me think}
-    C -->|One| D[Laptop]
-    C -->|Two| E[iPhone]
-    C -->|Three| F[fa:fa-car Car]
+  const [mermaidData, setMermaidData] = useState(`graph LR
+A[Start] --> B{Decision}
+B -- Yes --> C[Process]
+B -- No --> D[End]
+C --> E[Output]
+E --> F[End]
   `);
 
   const [isClient, setIsClient] = useState(false); // This flag checks if it's the client
@@ -26,8 +26,8 @@ export default function Home() {
   if (!isClient) return null; // Return nothing on the server side to avoid mismatch
 
   return (
-    <div className="mermaid">
-      {mermaidData}
+    <div>
+      <div className="mermaid">{mermaidData}</div>
     </div>
   );
 }
